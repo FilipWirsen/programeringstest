@@ -1,0 +1,52 @@
+img {
+    width: auto;
+}
+
+body{
+    font-size: 18px;
+    line-height: 1.8;
+}
+.button{
+    border: none;
+}
+
+.cardContainer {
+    text-align: center;
+
+}
+li {
+    width: 33%;
+    float: left;
+    padding: 1rem 0 0 0;
+}
+
+.modal{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modalContent{
+    background-color: #f4f4f4;
+    padding: 20px;
+    width: 70%;
+    margin: 20% auto;
+}
+
+#closeBtn{
+    color: #ccc;
+    float: right;
+    font-size: 30px;
+}
+
+#closeBtn:hover, #closeBtn:focus{
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
