@@ -1,13 +1,14 @@
-var modal = document.getElementById("modal");
-var closeBtn = document.getElementById("closeBtn");
-var modalBtn = document.getElementsByClassName("modalBtn");
+// Get modal objects
+const modal = document.getElementById("modal");
+const closeBtn = document.getElementById("closeBtn");
 var userId = document.getElementById("userId");
 var userEmail = document.getElementById("userEmail");
 var userFirstName = document.getElementById("userFirstName")
 var userLastName = document.getElementById("userLastName")
 var userImage = document.getElementById("userImage")
+
+// Variable to hold api data
 var obj;
-const apiUrl = 'https://reqres.in/api/users/';
 
 // assign function on closeBtn 
 closeBtn.addEventListener("click", closeModal);
@@ -40,7 +41,6 @@ function userClick(id){
     userFirstName.innerHTML = `First Name: ${user.first_name}`;
     userLastName.innerHTML = `Last Name: ${user.last_name}`;
     userImage.setAttribute("src", user.avatar);
-    console.log(obj.data[id-1].id);
 }
 
 function closeModal() {
