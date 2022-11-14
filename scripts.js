@@ -1,47 +1,74 @@
-// Get modal objects
 const modal = document.getElementById("modal");
-const closeBtn = document.getElementById("closeBtn");
-var userId = document.getElementById("userId");
-var userEmail = document.getElementById("userEmail");
-var userFirstName = document.getElementById("userFirstName")
-var userLastName = document.getElementById("userLastName")
-var userImage = document.getElementById("userImage")
-
-// Variable to hold api data
+var modalContent = document.getElementById("modalCont");
 var obj;
+async function getData(page, allData = []) {
 
-// assign function on closeBtn 
-closeBtn.addEventListener("click", closeModal);
+    // fetch data
+    let base = 'https://reqres.in/api/users/';
+    let url = `${base}?page=${page}`;
+    let response = await fetch(url);
+    let data = await response.json();
 
-// Get data from api 
-fetch('https://reqres.in/api/users/').then((response) => {
-    return response.json()
-}).then(data => {
+    allData.push(data); 
+  
+    // get 'total_pages' and 'page'
+    let totalPages = data.total_pages;
+    let currentPage = data.page;
+    if (currentPage == totalPages) {
+      return allData;
+    } else {
+      // get the next page and repeat
+      page++;
+      return getData(page, allData);
+    }
+  }
+
+
+let page = 1;
+getData(page).then((data) => {
     obj = data;
-    data.data.forEach(elem => {
-        createUser(elem);
+    data.forEach(elem => {
+        elem.data.forEach(user => {
+            createUser(user);
+        });    
     });
-});
-
+    }).catch((error) => {
+    console.log(error)
+})
 
 
 function createUser(user){
-    // Create li for each user and place inside ul
-    const markup = `<li>${user.first_name} <button class="button modalBtn" onclick='userClick("${user.id}")')>Show info</button></li>`;
+    const markup = `<div class="card">
+                        <h2>${user.first_name}</h2>
+                        <button class="button modalBtn" id="${user.id}" onclick='userClick("${user.id}")')>Show info</button>
+                    </div>`;
     document.getElementById("userList").innerHTML += markup;
 }
 
 
-function userClick(id){
-    // Edit modal to represent specific user
-    user = obj.data[id-1];
+function userClick(index){
+    if(index <= 6){
+        user = obj[0].data[index-1]
+    }
+    else if(index <= 12){
+        user = obj[1].data[index-7]
+    }
     modal.style.display = 'block';
-    userId.innerHTML =`Id: ${user.id}`;
-    userEmail.innerHTML = `Email: ${user.email}`;
-    userFirstName.innerHTML = `First Name: ${user.first_name}`;
-    userLastName.innerHTML = `Last Name: ${user.last_name}`;
-    userImage.setAttribute("src", user.avatar);
+    modalContent.innerHTML = `
+    <span id="closeBtn">&times;</span>
+    <h1 class="modalTitle">Employee: ${user.id}</h1>
+    <div class="modalInfo">
+        <p class="modalText">Email: <strong>${user.email}</strong></p>
+        <p class="modalText">First Name: <strong>${user.first_name}</strong></p>
+        <p class="modalText">Last Name: <strong>${user.last_name}</strong></p>
+    </div>
+    <div class="modalImg">
+        <img src="${user.avatar}">
+    </div>`;
+    var closeBtn = document.getElementById("closeBtn");
+    closeBtn.addEventListener("click", closeModal);
 }
+
 
 function closeModal() {
     // Function to close modal

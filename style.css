@@ -1,23 +1,40 @@
 img {
-    width: auto;
+    width: 100%;
 }
 
 body{
-    font-size: 18px;
     line-height: 1.8;
 }
 .button{
-    border: none;
+    background-color: #555555;
+    border-color: #555555;
+    border-radius: 20px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.modalTitle {
+    border-bottom: 1px solid;
 }
 
 .cardContainer {
     text-align: center;
 
 }
-li {
-    width: 33%;
+
+.modalText{
+    font-size: 1.2rem;
+}
+
+.card {
+    width: 30%;
     float: left;
-    padding: 1rem 0 0 0;
+    border: 1px solid;
+    margin: 1rem 1rem 0 1rem;
 }
 
 .modal{
@@ -37,16 +54,28 @@ li {
     padding: 20px;
     width: 70%;
     margin: 20% auto;
+    height: 20rem;
+}
+
+.modalInfo {
+    width: 75%;
+    float: left;
+}
+
+.modalImg {
+    width: 25%;
+    float: right;
+    height: 100%;
 }
 
 #closeBtn{
-    color: #ccc;
+    color: #555555;
     float: right;
     font-size: 30px;
 }
 
 #closeBtn:hover, #closeBtn:focus{
-    color: #000;
+    color: #ff0000;
     text-decoration: none;
     cursor: pointer;
 }
