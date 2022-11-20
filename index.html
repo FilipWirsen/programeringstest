@@ -5,18 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Clicker</title>
+    <title>Staff | Registry</title>
 </head>
 <body>
-    <div class="cardContainer">
-        <h1>Staff :</h1>
-        <div id="userList">
+    <div class="header">
+    <h1>Staff</h1>
+    </div>
+
+    <div class="container">
+        <div class="cardContainer">
+            <div id="userList"></div>
+        </div>
+        <div id="buttonContainer">
+            <button id="prevButton" disabled>Previous</button>
+            <h4 id="currentPage">1</h4>
+            <button id="nextButton">Next</button>
         </div>
     </div>
 
     <div id="modal" class="modal">
-        <div class="modalContent" id="modalCont">
-        </div>
+        <div class="modalContent" id="modalCont"></div>
     </div>
 </body>
 <script src="scripts.js"></script>
